@@ -9,8 +9,8 @@
 /**
  如果在缓存池中没有找到带有特殊标识符的cell，则可以通过以下三种方法创建新的cell：
  1、在cellForRowAtIndexPath方法中撰写创建新cell的代码；
- 2、不在cellForRowAtIndexPath方法中撰写创建新cell的代码而在viewDidLoad方法中撰写注册新cell的代码："[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];"；
- 3、既不在cellForRowAtIndexPath方法中撰写相关代码也不在viewDidLoad方法中撰写相关代码，而是在xib文件中设置cell的特殊标识符。
+ 2、不在cellForRowAtIndexPath方法中撰写创建新cell的代码而在viewDidLoad方法中撰写注册cell的代码："[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];"，然后系统会通过上述注册cell的代码来创建带有特殊标识符的新cell；
+ 3、既不在cellForRowAtIndexPath方法中撰写相关代码也不在viewDidLoad方法中撰写相关代码，而是在xib文件中设置cell的特殊标识符，然后系统会创建带有这个特殊标识符的新cell。
  */
 #import "ViewController.h"
 
