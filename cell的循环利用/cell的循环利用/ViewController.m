@@ -9,12 +9,12 @@
 /**
  系统先在缓存池中寻找带有特殊标识符的cell，如果没有找到的话可以通过以下的三种方式来创建新的cell：
  1、用代码的方式创建cell：
-（1）创建原生的cell(UITableViewCell)：可以在cellForRowAtIndexPath方法中撰写创建新的原生的cell的代码"cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"a"];"，然后系统会根据特殊标识符来创建新的原生的cell。如果不在此方法中撰写上述的代码的话则可以在视图控制器类中的viewDidLoad方法中撰写相关的注册的代码"[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"a"];"，然后系统会根据注册的类和特殊标识符来创建新的原生的cell，如此Demo所示；
- (2)创建自定义的cell(ZPTableViewCell)：和上述（1）中的相似，可以在自定义cell类中的cellWithTableView方法中撰写创建新的自定义cell的代码"cell = [[ZPTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"deal"];"，然后系统会根据特殊标识符来创建新的自定义的cell。如果不在此方法中撰写上述的代码的话则可以在视图控制器类中的viewDidLoad方法中撰写相关注册的代码"[tableView registerClass:[ZPTableViewCell class] forCellReuseIdentifier:@"deal"];"，然后系统会根据注册的类和特殊标识符来创建新的自定义的cell，如“用代码自定义等高的cell”Demo中所示。
+（1）创建原生的cell(UITableViewCell)：可以在cellForRowAtIndexPath方法中撰写创建新的原生cell的代码"cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"a"];"，然后系统会根据特殊标识符来创建新的原生cell。如果不在此方法中撰写上述的代码的话则可以在视图控制器类中的viewDidLoad方法中撰写相关的注册代码"[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"a"];"，然后系统会根据注册的类和特殊标识符来创建新的原生cell，如此Demo所示；
+ (2)创建自定义的cell(ZPTableViewCell)：和上述（1）中的相似，可以在自定义cell类中的cellWithTableView方法中撰写创建新的自定义cell的代码"cell = [[ZPTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"deal"];"，然后系统会根据特殊标识符来创建新的自定义cell。如果不在此方法中撰写上述的代码的话则可以在视图控制器类中的viewDidLoad方法中撰写相关的注册代码"[tableView registerClass:[ZPTableViewCell class] forCellReuseIdentifier:@"deal"];"，然后系统会根据注册的类和特殊标识符来创建新的自定义cell，如“用代码自定义等高的cell”Demo中所示。
  2、用xib文件的方式创建自定义cell：
- 在相应的自定义cell类里面的cellWithTableView方法里面撰写加载自定义cell的xib文件的代码"cell = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ZPTableViewCell class]) owner:nil options:nil] lastObject];"，并且在自定义cell的xib文件中设置自定义cell的特殊标识符(identifier)，然后系统会根据xib文件和特殊标识符来创建新的自定义cell。如果不在此方法中撰写加载自定义cell的xib文件的代码的话就要在视图控制器类中的viewDidLoad方法中撰写相关的注册代码"[self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([ZPTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"deal"];"，并且也要在自定义cell的xib文件中设置自定义cell的特殊标识符(identifier)，然后系统会根据注册的类和特殊标识符来创建新的自定义cell。如"ZPEqualHeightCustomizedCell_UITableViewController_xib"Demo所示。
+ 在相应的自定义cell类里面的cellWithTableView方法里面撰写加载自定义cell的xib文件的代码"cell = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ZPTableViewCell class]) owner:nil options:nil] lastObject];"，并且在自定义cell的xib文件中设置cell的特殊标识符(identifier)，然后系统会根据xib文件和特殊标识符来创建新的自定义cell。如果不在此方法中撰写加载自定义cell的xib文件的代码的话就要在视图控制器类中的viewDidLoad方法中撰写相关的注册代码"[self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([ZPTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"deal"];"，并且也要在自定义cell的xib文件中设置cell的特殊标识符(identifier)，然后系统会根据注册的类和特殊标识符来创建新的自定义cell。如"ZPEqualHeightCustomizedCell_UITableViewController_xib"Demo所示。
  3、用storyboard文件的方式创建自定义cell：
- 一般在storyboard文件中会有一个UITableViewController的子类视图控制器，要给这个视图控制器的tableView控件上的自定义cell设置特殊标识符(identifier)，然后在此视图控制器类中的cellForRowAtIndexPath方法中撰写相关的代码，如果系统在缓存池中找不到带有特殊标识符的自定义的cell的话，就会到storyboard文件中去找，如果找到这个带有特殊标识符的自定义cell以后就会根据这个cell而创建新的自定义cell。如"ZPEqualHeightCustomizedCell_UITableViewController_storyboard"Demo所示。
+ 一般在storyboard文件中会有一个UITableViewController的子类视图控制器，要给这个视图控制器的tableView控件上的自定义cell设置特殊标识符(identifier)，然后在此视图控制器类中的cellForRowAtIndexPath方法中撰写相关的代码，如果系统在缓存池中找不到带有特殊标识符的自定义cell的话，就会到storyboard文件中去找，如果找到这个带有特殊标识符的自定义cell，就会根据这个cell而创建新的自定义cell。如"ZPEqualHeightCustomizedCell_UITableViewController_storyboard"Demo所示。
  */
 #import "ViewController.h"
 
@@ -37,8 +37,8 @@
     [self.view addSubview:tableView];
     
     /**
-     如果不在cellForRowAtIndexPath方法中撰写创建新cell的代码的话，则应该在此方法中注册cell的类型并且绑定特殊标识符，从而系统会根据注册的类型和绑定的特殊标识符而创建新的cell；
-     这种做法的缺点是只能创建默认样式的cell。
+     如果不在cellForRowAtIndexPath方法中撰写创建新的原生cell的代码的话，则应该在此方法中注册cell的类型并且绑定特殊标识符，从而系统会根据注册的类型和绑定的特殊标识符而创建新的原生cell；
+     这种做法的缺点是只能创建默认样式的原生cell。
      */
 //    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"a"];
 }
@@ -72,7 +72,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
     /**
-     3、如果系统在缓存池中没有找到可重复利用的cell的话则可以在此方法中通过撰写下面的代码来创建新的cell或者不写下面的代码而在视图控制器类中的viewDidLoad方法中撰写相关注册的代码也可以成功创建新的cell。
+     3、如果系统在缓存池中没有找到可重复利用的cell的话则可以在此方法中通过撰写下面的代码来创建新的原生cell或者不写下面的代码而在视图控制器类中的viewDidLoad方法中撰写相关注册的代码也可以成功创建新的原生cell。
      */
     if (cell == nil)
     {
