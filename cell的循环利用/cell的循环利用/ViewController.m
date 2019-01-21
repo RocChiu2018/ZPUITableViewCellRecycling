@@ -37,7 +37,7 @@
     [self.view addSubview:tableView];
     
     /**
-     如果不在cellForRowAtIndexPath方法中撰写创建新的原生cell的代码的话，则应该在此方法中注册cell的类型并且绑定特殊标识符，从而系统会根据注册的类型和绑定的特殊标识符而创建新的原生cell；
+     如果不在"cellForRowAtIndexPath"方法中撰写创建新的原生cell的代码的话，则应该在此方法中注册cell的类型并且绑定特殊标识符，从而系统会根据注册的类型和绑定的特殊标识符而创建新的原生cell；
      这种做法的缺点是只能创建默认样式的原生cell。
      */
 //    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"a"];
@@ -72,7 +72,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
     /**
-     3、如果系统在缓存池中没有找到可重复利用的cell的话则可以在此方法中通过撰写下面的代码来创建新的原生cell或者不写下面的代码而在视图控制器类中的viewDidLoad方法中撰写相关注册的代码也可以成功创建新的原生cell。
+     3、如果系统在缓存池中没有找到可重复利用的cell的话则可以在此方法中通过撰写下面的代码来创建新的原生cell或者不写下面的代码而在视图控制器类中的"viewDidLoad"方法中撰写相关注册的代码也可以成功创建新的原生cell。
      */
     if (cell == nil)
     {
